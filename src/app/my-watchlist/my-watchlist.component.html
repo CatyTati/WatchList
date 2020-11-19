@@ -1,0 +1,29 @@
+<div class="info">
+    <h1 class="text-center">My watchlist <img height="20px" src="/assets/settings.png" (click)="randomElements(maxNum)"></h1>
+    <br />
+   <div>Number of Buy stock:{{numOfBuyStock}}</div>
+   <div>Number of Sell stock:{{numOfSellStock}}</div>
+    <table class="table table-bordered secondary-table">
+      <tr>
+        <th><div>MARKET<img height="20px" (click)="doFilter(stockList.length,'Name')" src="/assets/arrow.png"></div></th>
+        <th><div>price<img height="20px" (click)="filterNums(stockList.length,'Price')" src="/assets/arrow.png"></div></th>
+        <th><div>current price<img height="20px" (click)="filterNums(stockList.length,'CurPrice')" src="/assets/arrow.png"></div></th>
+        <th><div>BUY<img height="20px" (click)="filterNums(stockList.length,'BuyPrice')" src="/assets/arrow.png"></div></th>
+        <th><div>SELL<img height="20px" (click)="filterNums(stockList.length,'SellPrice')" src="/assets/arrow.png"></div></th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let item of stockList" item-swipe="right" on-remove="removeItem(item)">
+        <td><img src="/assets/pay-pal.jpg">{{item.Name}}</td>
+        <td>{{item.Price}}</td>
+        <td><span
+          [ngClass]="{'red': item.Down === true, 'green': item.Down === false}"
+          >{{item.CurPrice}}</span></td>
+        <td>{{item.BuyPrice}}</td>
+        <td>{{item.SellPrice}}</td>
+        <td><button class="btn btn-success" (click)="stockAction(true,item.Name)">BUY</button><br>
+        <button class="btn btn-danger" (click)="stockAction(false,item.Name)">SELL</button></td>
+      </tr>
+    </table>
+    <br />
+    <br/><br/>
+  </div>
